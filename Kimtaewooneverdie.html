@@ -21,16 +21,30 @@
   a {
     color:black;
   }
+  .rank {
+    border:3px solid green;
+    padding:5px;
+
+  }
   </style>
   </head>
 
 
   <body>
-    <h1><strong>2021.10.31</strong></h1>
-    <h1><strong><a href="https://namu.wiki/w/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EC%9C%A1%EA%B5%B0" target="_blank" title="도망쳐" style="color:red;text-decoration:none">지옥</a>에서 그가 돌아온다</strong></h1>
-    <h2><strong>대한의 건아, 조선의 자존심</strong></h2>
-    <h2><strong>2년간의 공백을 뚫고 화려하게 등장!!!</strong></h2>
+    <h1 class="rank"><strong>2021.10.31</strong></h1>
+    <h1 class="rank"><strong><a href="https://namu.wiki/w/%EB%8C%80%ED%95%9C%EB%AF%BC%EA%B5%AD%20%EC%9C%A1%EA%B5%B0" target="_blank" title="도망쳐" style="color:red;text-decoration:none">지옥</a>에서 그가 돌아온다</strong></h1>
+    <h1><strong>대한의 건아, 조선의 자존심</strong></h2>
+    <h1><strong>2년간의 공백을 뚫고 화려하게 등장!!!</strong></h2>
 <p><iframe width="560" height="315" src="https://www.youtube.com/embed/PG5A1MIRGNw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p>오늘의 날짜</p>
+<form>
+  <input type='date' id='currentDate'/>
+</form>
+
+<script>
+  document.getElementById('currentDate').value = new Date().toISOString().substring(0, 10);;
+</script>
+
     <h3>이곳은 김태우를 위한 웹사이트입니다.<h3>
     <h3>찬양하고 경배하십시오. 믿는 자에게는 <u>자비</u>를, 불신자에게는 <u>죽음</u>을.<h3>
     <img src="굳건이.jpg">
@@ -38,12 +52,14 @@
     <img src="굳건이.jpg">
     <a href="http://www.mma.go.kr/contents.do?mc=mma0000740" target="_blank" title="도망쳐"><img src="노예가필요해요.jpg"></a>
     <p><del>Cake is lie</del></p>
-    <ul>
-      <li><a href="그는 누구인가.html">1. 그는 누구인가?</a></li>
-      <li><a href="F.A.C.T.html">2. F.A.C.T</a></li>
-      <li><a href="위대한 업적들.html">3. 위대한 업적들</a></li>
-      <li><a href="영접의 신당.html">4. 영접의 신당</a></li>
-    </ul>
+
+      <p><a href="그는 누구인가.html">1. 그는 누구인가?</a></p>
+      <p><a href="F.A.C.T.html">2. F.A.C.T</a></p>
+      <p><a href="위대한 업적들.html">3. 위대한 업적들</a></p>
+      <p><a href="삼궤구고두례.html">4. 삼궤구고두례</a></p>
+
+
+
 
     <!--Start of Tawk.to Script-->
     <script type="text/javascript">
@@ -58,6 +74,7 @@
     })();
     </script>
     <!--End of Tawk.to Script-->
+
 
   </body>
 </html>
