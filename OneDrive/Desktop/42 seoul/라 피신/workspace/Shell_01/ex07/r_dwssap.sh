@@ -1,0 +1,1 @@
+cat /etc/passwd | sed '/#/d' | awk -F: '(NR % 2) == 0 {print $1}' | rev | sort -r | awk -v LINE1=${FT_LINE1} -v LINE2=${FT_LINE2} "NR >= LINE1  && NR <= LINE2" | awk 'ORS = ", " {print $0}' | sed 's/, $/./'

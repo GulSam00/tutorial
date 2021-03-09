@@ -1,0 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sham <sham@stduent.42seoul.kr>             +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/02/23 13:10:08 by sham              #+#    #+#             */
+/*   Updated: 2021/02/23 13:29:01 by sham             ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <stdio.h>
+
+void	ft_ft(int *nbr);
+void	ft_ultimate_ft(int *********nbr);
+
+int main()
+{
+	int nbr;
+	
+	nbr = 0;
+	ft_ft(&nbr);
+	printf ("%d \n", nbr);
+
+	int a;
+	int *b = &a;
+	int *c = &b;
+	int *d = &c;
+	int *e = &d;
+	int *f = &e;
+	int *g = &f;
+	int *h = &g;
+	int *i = &h;
+	int *j = &i;
+	ft_ultimate_ft(j);
+	printf ("%d \n", a);
+}
