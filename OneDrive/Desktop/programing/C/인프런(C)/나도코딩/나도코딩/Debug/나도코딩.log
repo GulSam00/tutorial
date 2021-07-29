@@ -1,6 +1,0 @@
-﻿  file_project.c
-C:\Users\qwerg\OneDrive\Desktop\programing\C\인프런(C)\나도코딩\나도코딩\file_project.c(1,1): warning C4005: '_CRT_SECURE_NO_WARNINGS': 매크로 재정의
-C:\Users\qwerg\OneDrive\Desktop\programing\C\인프런(C)\나도코딩\나도코딩\file_project.c : message : '_CRT_SECURE_NO_WARNINGS'의 이전 정의를 참조하십시오.
-C:\Users\qwerg\OneDrive\Desktop\programing\C\인프런(C)\나도코딩\나도코딩\file_project.c(26,12): warning C4013: 'getch'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-C:\Users\qwerg\OneDrive\Desktop\programing\C\인프런(C)\나도코딩\나도코딩\file_project.c(42,13): warning C4013: 'strcmp'이(가) 정의되지 않았습니다. extern은 int형을 반환하는 것으로 간주합니다.
-  나도코딩.vcxproj -> C:\Users\qwerg\OneDrive\Desktop\programing\C\인프런(C)\나도코딩\Debug\나도코딩.exe
