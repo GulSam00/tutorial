@@ -1,13 +1,30 @@
-import React, {Component} from 'react';
+import React, {PureComponent, memo} from 'react';
 
-class Try extends Component {
-	render(){
+
+//함수 컴포넌트
+
+const Try = memo(({tryInfo}) => {
+	return (
+		<li>
+			<div>{tryInfo.try}</div>
+			<div>{tryInfo.result}</div>
+		</li>
+			)
+});
+
+/*
+//클래스 컴포넌트
+class Try extends PureComponent {
+
+render() {
+const { tryInfo } = this.props;
 return (
-<li id={this.props.value.name} key={this.props.value.name} >
- 	 {this.props.index} {this.props.value.name}는 {this.props.value.taste} 
-</li>
+	<li>
+		<div>{tryInfo.try}</div>
+		<div>{tryInfo.result}</div>
+	</li>
 		)
 	}
 }
-
+ */
 export default Try;

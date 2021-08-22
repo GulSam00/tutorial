@@ -1,50 +1,6 @@
-import React from 'react';
+import React, {useRef, useState, memo, Component, createRef} from 'react';
 import Try  from './Try.js';
 
-/*
-
-const Baseball = () => {
-
-  const [answer, setAnswer] = useState('');
-  const [value, setValue] = useState('');
-  const [result, setResult] = useState('');
-  
-  const inputRef = useRef(null);
-
-  const onSubmitForm = (e) => {  //onSubmitForm : 엔터로 정보가 전송시 실행
-    e.preventDefault(); // 창이 새로고침 되는 걸 방지
-    if (parseInt(value) == 0) {
-      setResult("테스트용");
-      inputRef.current.focus();
-      
-    }
-      else {
-        setResult("테스트용");
-        inputRef.current.focus();
-      }
-  
-  }
-  const onRefInput = (e) => {
-    inputRef = e; //html의 input을 이 리액트 컴포넌트에서 input으로 불러올 수 있게 된다.
-  }
-
-  const onChangeInput = (e) => {
-    setValue(e.target.value);
-  }
-
-    return (
-    <>
-    <h1>숫자야구 {result}</h1>
-    <form onSubmit={onSubmitForm}>
-      <label htmlFor="word">답을 입력하세요.</label> 
-      <input ref={inputRef} value={value} id="word" className="word" onChange={onChangeInput}/>
-      <button>클릭!</button>
-      <div>{answer}</div>
-    </form>
-
-    </>
-    )}
-*/
 function getNumbers() { //숫자 4개를 랜덤하게
   const numberList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
   const array = [];
@@ -56,7 +12,82 @@ function getNumbers() { //숫자 4개를 랜덤하게
   return array;
 }
 
-class Baseball extends React.Component {
+/*
+const Baseball = memo(() => {
+
+  const [result, setResult] = useState('');
+  const [value, setValue] = useState('');
+  const [answer, setAnswer] = useState(getNumbers());
+  const [tries, setTries] = useState([]);
+  const inputEl = useRef(null);
+
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+    console.log(answer.join('') + ' ' + value);
+    if (answer.join('') === value)
+    {
+      setResult("홈런!");
+      setTries((prevTries) => { return [...prevTries, {try : value, result : "홈런!"}] });
+      setValue();
+      alert("홈런!");
+      alert("게임 재시작");
+      setResult("");
+      setValue("");
+      setAnswer(getNumbers());
+      setTries([]);
+    }
+    else
+    {
+      const answerArray = value.split('').map((e)=>parseInt(e));
+      let strike = 0;
+      let ball = 0;
+      if (tries.length >= 9) {
+        alert(`실패! 정답은 ${answerArray.join('')}입니다.`);
+        alert("게임 재시작");
+      setResult("");
+      setValue("");
+      setAnswer(getNumbers());
+      setTries([]);
+      } 
+      else {
+        for (let i = 0; i < 4; i++)
+        {
+          if (answerArray[i] === answer[i])
+            strike++;
+          else if (answer.includes(answerArray[i]))
+            ball++;
+        }
+        setResult(`${strike}스크라이크 ${ball}볼`);
+        setTries((prevTries) => {
+          return [...prevTries, {try : value, result : `${strike}스크라이크 ${ball}볼`}]});
+        setValue("");
+      };  
+    };
+    inputEl.current.focus();
+  };
+
+  const onChangeInput = (e) => {
+      setValue(e.target.value);
+  };
+
+
+  return (
+    <>
+    <h1>숫자야구</h1>
+    <form onSubmit={onSubmitForm}>
+    <input ref={inputEl} maxLength={4} value={value} onChange={onChangeInput}/>
+    </form>
+    <div>시도 : {tries.length}</div>
+    <div>결과 : {result}</div>
+    <ul>
+    {tries.map((v, i) => {return(<Try key={i} tryInfo={v}/>)})}
+    </ul>
+    </>
+  )
+
+})
+*/ 
+class Baseball extends Component {
   state = {
     result : "",
     value : "",
@@ -68,16 +99,53 @@ class Baseball extends React.Component {
     console.log(this.state.answer.join('') + ' ' + this.state.value);
     if (this.state.answer.join('') === this.state.value)
     {
-      this.setState({
-        result : "홈런!",
-        tries : [...this.state.tries, {try: this.state.value, result:"홈런!"}],
-        value : "",
-      })
-      console.log("정답!");
-    }
+      this.setState((prevState) => {
+        return {
+          result : "홈런!",
+          tries : [...this.state.tries, {try: this.state.value, result:"홈런!"}],
+          value : "",
+        }
+      });
+      alert("홈런!");
+      alert("게임 재시작");
+        this.setState({
+          result : "",
+          value : "",
+          answer : getNumbers(),
+          tries : [],
+        })
+      }
     else
     {
-      
+      const answerArray = this.state.value.split('').map((e)=>parseInt(e));
+      let strike = 0;
+      let ball = 0;
+      if (this.state.tries.length >= 9) {
+        this.setState({result: `실패! 정답은 ${answerArray.join('')}입니다.`});
+        alert("게임 재시작");
+        this.setState({
+          result : "",
+          value : "",
+          answer : getNumbers(),
+          tries : [],
+        })
+      } else {
+        for (let i = 0; i < 4; i++)
+        {
+          if (answerArray[i] === this.state.answer[i])
+            strike++;
+          else if (this.state.answer.includes(answerArray[i]))
+            ball++;
+        }
+        this.setState((prevState) => {
+          return {
+            result : `${strike}스크라이크 ${ball}볼`,
+            tries : [...this.state.tries, {try: this.state.value, result:`${strike}스크라이크 ${ball}볼`}],
+            value : "",
+          }
+        });
+      }
+      this.inputRef.current.focus();
     }
      
   };
@@ -85,20 +153,21 @@ class Baseball extends React.Component {
       this.setState({value : e.target.value});
   };
 
+
+  inputRef = createRef();
+
  
-  fruits = [{name : '사과', taste : '달다'}, 
-      {name : '배', taste : '시원하다'}, 
-      {name : '포도', taste : '시다'}];
   render() {
+    const {tries, value} = this.state;
     return (
     <>
     <h1>숫자야구</h1>
     <form onSubmit={this.onSubmitForm}>
-    <input maxLength={4} value={this.state.value} onChange={this.onChangeInput}/>
+    <input ref={this.inputRef} maxLength={4} value={value} onChange={this.onChangeInput}/>
     </form>
-    <div>시도 : {this.state.tries.length}</div>
+    <div>시도 : {tries.length}</div>
     <ul>
-    {this.fruits.map((e, index) => {return(<Try key={index} value={e} index={index}/>)})}
+    {tries.map((v, i) => {return(<Try key={i} tryInfo={v}/>)})}
 
     </ul>
 
