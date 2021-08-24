@@ -1,16 +1,17 @@
-import React, {useCallback} from 'react';
-import {CLICK_CELL, CHANGE_TURN} from "./TicTacToeFunction";
+import React, {useCallback, memo}  from 'react';
+import {CLICK_CELL} from "./TicTacToeFunction";
 
-const Td = ({cellData, rowIndex, cellIndex, dispatch}) => {
-  console.log(rowIndex, cellIndex);
+const Td = memo(({cellData, rowIndex, cellIndex, dispatch}) => {
+  console.log("Td render");
   const onCilckTd = useCallback(() => {
-    console.log(rowIndex, cellIndex);
+    if (cellData) {
+      return ;
+    }
     dispatch({type:CLICK_CELL, row:rowIndex, cell:cellIndex});
-    dispatch({type:CHANGE_TURN});
-  }, []);
+  }, [cellData]);
   return (
     <td rowIndex={rowIndex} cellIndex={cellIndex} onClick={onCilckTd} cellData={cellData}>{cellData}</td>
   )
-}
+});
 
 export default Td;
