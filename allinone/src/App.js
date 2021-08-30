@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import logo from "./logo.svg";
+import { BrowserRouter, Link, Route, Switch } from "react-router-dom";
+import Table from "@material-ui/core/Table";
+import TableHead from "@material-ui/core/TableHead";
+import TableBody from "@material-ui/core/TableBody";
+import TableRow from "@material-ui/core/TableRow";
+import TableCell from "@material-ui/core/TableCell";
+import Matcher from "./Matcher";
+import "./App.css";
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Table>
+      <BrowserRouter>
+        <div className="header">
+          <TableHead>
+            <TableRow>
+              <TableCell>
+                <Link to="/bobs/view">모아보기</Link>
+              </TableCell>
+              <TableCell>
+                <Link to="/bobs/data">조회</Link>
+              </TableCell>
+              <TableCell>
+                <Link to="/bobs/bann">차단리스트</Link>
+              </TableCell>
+            </TableRow>
+          </TableHead>
+        </div>
+        <div>
+          <Switch>
+            <Route exact path="/bobs/:name" component={Matcher} />
+          </Switch>
+        </div>
+      </BrowserRouter>
+    </Table>
   );
-}
+};
 
 export default App;
