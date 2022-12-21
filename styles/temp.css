@@ -24,3 +24,8 @@ a {
     background: black;
   }
 }
+
+div {
+  color: aqua;
+  font-size: 40px;
+}
