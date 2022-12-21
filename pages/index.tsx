@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import Movie from "../api/Movie";
+import { GetMovieHook } from "../hook/movie";
 
 import CustomHead from "./../components/CustomHead";
 
@@ -11,8 +12,12 @@ const API_KEY = "479db48b922fd08fed6098721156cafb";
 
 const Home = () => {
   const [state, setState] = useState(0);
-
   const [data, setData] = useState<any>([]);
+  const { data: movieData, status, error } = GetMovieHook();
+  console.log("movieData", movieData);
+  console.log("status", status);
+  console.log("error", error);
+
   const router = useRouter();
 
   const getAPI = async () => {
