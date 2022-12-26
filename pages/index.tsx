@@ -3,38 +3,19 @@ import styled from "styled-components";
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Movie from "../api/Movie";
 import { GetMovieHook } from "../hook/movie";
 
 import CustomHead from "./../components/CustomHead";
 
-const API_KEY = "479db48b922fd08fed6098721156cafb";
-
 const Home = () => {
   const [state, setState] = useState(0);
-  const [data, setData] = useState<any>([]);
   const { data: movieData, status, error } = GetMovieHook();
+  const data = movieData?.data.results;
   console.log("movieData", movieData);
   console.log("status", status);
   console.log("error", error);
 
   const router = useRouter();
-
-  const getAPI = async () => {
-    const test = await Movie.getMovie();
-    console.log("test", test);
-
-    const result = await (
-      await fetch(
-        `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}&language=ko-KR`
-      )
-    ).json();
-    console.log("응답 : ", result.results);
-    setData(result.results);
-  };
-  useEffect(() => {
-    getAPI();
-  }, []);
 
   console.log("router", router);
 
@@ -49,11 +30,22 @@ const Home = () => {
         <Link href="/page3">page3</Link>
       </div>
       <img src="/vercel.svg" />
+
       <h1>data = {state}</h1>
       <button onClick={() => setState((prev) => prev + 1)}>클릭!</button>
+
       {data.map((item: any, i: number) => (
         <div key={item.id}>{item.title}</div>
       ))}
+      <div className="container">
+        {!data && <h4>Loading...</h4>}
+        {data?.map((movie) => (
+          <div className="movie" key={movie.id}>
+            <img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} />
+            <h4>{movie.original_title}</h4>
+          </div>
+        ))}
+      </div>
     </Temp>
   );
 };
@@ -61,8 +53,23 @@ const Home = () => {
 export default Home;
 
 const Temp = styled.div`
-  .test {
-    color: red;
-    font-size: 20px;
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 20px;
+    gap: 20px;
+  }
+  .movie img {
+    max-width: 100%;
+    border-radius: 12px;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+  }
+  .movie:hover img {
+    transform: scale(1.05) translateY(-10px);
+  }
+  .movie h4 {
+    font-size: 18px;
+    text-align: center;
   }
 `;
