@@ -109,6 +109,7 @@ const Home = () => {
                 <Checkbox
                   checked={todo.attributes.isDone}
                   onChange={() => mutatePut([todo.id, !todo.attributes.isDone])}
+                  // onChange={() => mutatePut( {id : todo.id, isDone :!todo.attributes.isDone})}
                 />
                 <text>{todo.attributes.title}</text>
 

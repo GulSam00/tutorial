@@ -26,6 +26,17 @@ const Todos = {
     return res;
   },
 
+  // putTodo: async (temp: any) => {
+  //   const { id, isDone } = temp;
+  //   const url = `todos/${id}`;
+
+  //   const data = { isDone };
+
+  //   const res = await apiClient.put(url, { data });
+  //   console.log(res);
+  //   return res;
+  // },
+
   deleteTodo: async (id: number) => {
     const url = `todos/${id}`;
     const res = await apiClient.delete(url);
