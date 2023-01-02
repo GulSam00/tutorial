@@ -15,8 +15,7 @@
     "title": {
       "type": "string",
       "required": true,
-      "default": "제목",
-      "regex": "[a-z]"
+      "default": "제목"
     },
     "isDone": {
       "type": "boolean",

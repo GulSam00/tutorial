@@ -14,7 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <style jsx global>
         {`
           div {
-            color: lightblue;
+            color: black;
             font-size: 60px;
           }
         `}
