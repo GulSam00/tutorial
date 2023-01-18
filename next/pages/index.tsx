@@ -1,11 +1,14 @@
-import { useState } from "react";
-import styled from "styled-components";
+import { useState, useEffect } from "react";
 import { useQueryClient } from "react-query";
+import { useRouter } from "next/router";
+import styled from "styled-components";
 
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
+
+import CustomHead from "./../components/CustomHead";
 
 import {
   GetTodosHook,
@@ -13,7 +16,6 @@ import {
   DeleteTodoHook,
   PutTodoHook,
 } from "../hook/todos";
-import CustomHead from "./../components/CustomHead";
 
 type Todo = {
   id: number;
@@ -27,25 +29,31 @@ type Todo = {
 };
 
 const Home = () => {
-  const [newTodo, setNewTodo] = useState<string>("");
-
   const queryClient = useQueryClient();
+  const router = useRouter();
 
   const mutateDelete = DeleteTodoHook(queryClient);
   const mutatePost = PostTodoHook(queryClient);
   const mutatePut = PutTodoHook(queryClient);
 
-  const { data, status, error } = GetTodosHook();
-
-  const todos = data?.data.data;
-  console.log(data, status, error);
+  const { data: todoData } = GetTodosHook();
+  const todos = todoData?.data.data;
   console.log(todos);
+
+  const [newTodo, setNewTodo] = useState<string>("");
 
   const handlePost = async () => {
     if (newTodo === "") return;
     setNewTodo("");
     mutatePost(newTodo);
   };
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (!user) {
+      // router.push("/login");
+    }
+  }, []);
 
   return (
     <>
