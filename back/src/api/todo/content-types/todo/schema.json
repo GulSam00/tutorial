@@ -21,6 +21,12 @@
       "type": "boolean",
       "default": false,
       "required": true
+    },
+    "madeUser": {
+      "type": "string"
+    },
+    "madeUserId": {
+      "type": "biginteger"
     }
   }
 }

@@ -1,14 +1,18 @@
 import { useState } from "react";
 import styled from "styled-components";
-import Todos from "../api/Todos";
-import { useMutation, useQueryClient } from "react-query";
+import { useQueryClient } from "react-query";
 
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 
-import { GetTodosHook } from "../hook/todos";
+import {
+  GetTodosHook,
+  PostTodoHook,
+  DeleteTodoHook,
+  PutTodoHook,
+} from "../hook/todos";
 import CustomHead from "./../components/CustomHead";
 
 type Todo = {
@@ -27,50 +31,9 @@ const Home = () => {
 
   const queryClient = useQueryClient();
 
-  const { mutate: mutateDelete } = useMutation(Todos.deleteTodo, {
-    // 옵션
-    onError: (err) => {
-      alert("글을 삭제하지 못했습니다.");
-    },
-    onSuccess: () => {
-      console.log("글이 삭제되었습니다.");
-      queryClient.invalidateQueries("todos");
-    },
-    onSettled: () => {
-      console.log("삭제 요청이 실행되었습니다.");
-    },
-  });
-
-  const { mutate: mutatePost } = useMutation(Todos.postTodo, {
-    // 옵션
-    onError: (err) => {
-      alert("글을 생성하지 못했습니다.");
-    },
-    onSuccess: () => {
-      console.log("글이 생성되었습니다.");
-      queryClient.invalidateQueries("todos");
-    },
-    onSettled: () => {
-      console.log("생성 요청이 실행되었습니다.");
-    },
-  });
-
-  const { mutate: mutatePut } = useMutation(
-    (args: any) => Todos.putTodo(args[0], args[1]),
-    {
-      // 옵션
-      onError: (err) => {
-        alert("글을 수정하지 못했습니다.");
-      },
-      onSuccess: () => {
-        console.log("글이 수정되었습니다.");
-        queryClient.invalidateQueries("todos");
-      },
-      onSettled: () => {
-        console.log("수정 요청이 실행되었습니다.");
-      },
-    }
-  );
+  const mutateDelete = DeleteTodoHook(queryClient);
+  const mutatePost = PostTodoHook(queryClient);
+  const mutatePut = PutTodoHook(queryClient);
 
   const { data, status, error } = GetTodosHook();
 
