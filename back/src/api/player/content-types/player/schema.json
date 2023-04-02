@@ -16,10 +16,10 @@
       "type": "string"
     },
     "userId": {
-      "type": "biginteger"
+      "type": "string"
     },
     "password": {
-      "type": "password"
+      "type": "string"
     }
   }
 }

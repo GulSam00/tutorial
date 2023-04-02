@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useQueryClient } from "react-query";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import Image from "next/image";
 
 import Checkbox from "@mui/material/Checkbox";
 import FormGroup from "@mui/material/FormGroup";
@@ -59,6 +60,8 @@ const Home = () => {
     <>
       <Container>
         <CustomHead title="main" />
+        <Image src="/kawaii.png" alt="image" width={400} height={400} />
+
         <h1>메인 페이지</h1>
 
         <TextField
