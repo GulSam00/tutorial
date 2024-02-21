@@ -1,0 +1,38 @@
+/* 기본 세팅 */
+* {
+text-align: center;
+}
+a {
+color:black;
+}
+
+/* .celebrate {
+color:blue;
+} */
+.rank {
+border:3px solid green;
+padding:5px;
+}
+       /* 그는 누구인가 */
+}
+h5 {
+  border-bottom:2px solid gray;
+  display:inline;
+  margin-bottom: 3px;
+}
+.saying {
+  border-bottom:4px solid black;
+  margin-bottom: 3px;
+}
+
+/* F.A.C.T */
+
+#staying {
+  color:red;
+}
+#facts p {
+  border:1px solid black;
+  margin: 0 auto;
+       width: 800px;
+       background: white;
+       padding: 10px;
