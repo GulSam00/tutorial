@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>군대워치</title>
+    <link rel="stylesheet" href="css/bootstrap.css" />
+    <meta charset="UTF-8"/>
+
+  </head>
+
+  <body>
+      <style type="text/css">
+        .jumbotron {
+            text-shadow: black 0.05em 0.05em 0.05em;
+            color: green;
+            background-color:ghostwhite;
+        }
+
+        .name{
+    text-align: center;
+          margin-top: 20%;
+  }
+
+      </style>
+
+      <nav class="navbar navbar-default">
+        <a class="navbar-brand" href="">군대워치</a>
+      </nav>
+
+      <div class="jumbotron">
+        <h1 class="text-center">군대워치&#9201;</h1>
+        <h3 class="text-center">국방부의 시계는 거꾸로 간다</h3>
+    </div>
+
+      <div class="container py-4">
+
+    
+        <div class="d-flex flex-column">
+          <div class="col-md-6">
+            <div class="jumbotron name">
+
+              <form class = "js-form form ">
+                <input type="text" placeholder="이름을 입력해주십시오." />
+            </form>
+            <h2 class = "js-greetings" greetings></h2>
+
+            </div>
+          </div>
+
+          <div class="col-md-6">
+            <div class="jumbotron">
+              
+              <span class="clock"> 
+                <h3 class="js-weather"></h3> 
+              </span>
+
+            </div>
+          </div>
+        </div>
+    
+
+        <div class="container">
+          <div class="jumbotron">
+            
+              <p class="text-center"> 입대일을 입력해주세요. </p>
+    
+              <p class="text-center">
+                  <input class="input" type="date">
+                <button class="btn btn-primary btn-lg">설정</button>
+            </p>
+              <p class="start-date text-center">입대일 ----년 --월 --일</p>
+              <p class="end-date
+              text-center">전역일 ----년 --월 --일</p>
+          </div>
+      </div>
+      <div class="jumbotron">
+
+        <h1>위시 리스트</h1>
+        <form class= "input-text">
+          <input type="text" placeholder="하고 싶은 일">
+        </form>
+        
+        <h2>계획</h2>
+        <ul class="pending"></ul>
+      <br>
+        <h2>추억</h2>
+        <ul class="finished"></ul>
+        </div>
+
+
+
+     
+      <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="js/weather.js"></script>
+        <script src="js/clock.js"></script>
+        <script src="js/bootstrap.js"></script>
+        <script src="js/twotodolist.js"></script>
+        <script src="js/greeting.js"></script>
+    </body>
+
+</html>
