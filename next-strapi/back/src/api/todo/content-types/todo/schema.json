@@ -1,0 +1,32 @@
+{
+  "kind": "collectionType",
+  "collectionName": "todos",
+  "info": {
+    "singularName": "todo",
+    "pluralName": "todos",
+    "displayName": "todo",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "제목"
+    },
+    "isDone": {
+      "type": "boolean",
+      "default": false,
+      "required": true
+    },
+    "madeUser": {
+      "type": "string"
+    },
+    "madeUserId": {
+      "type": "biginteger"
+    }
+  }
+}
